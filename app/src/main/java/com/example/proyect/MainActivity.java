@@ -74,70 +74,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         HashMap<String, Integer> setValues =  new HashMap<>();
+        String value;
         switch (view.getId()) {
             case R.id.cocina: // v1
-                if (checkStatus(cocina.getCurrentTextColor())) {
-                    setValues.put("v1", 1);
-                } else {
-                    setValues.put("v1", 0);
-                }
-                serviceV.putValueDevice(setValues);
+                value = checkStatus(cocina.getCurrentTextColor());
+                serviceV.putValueDevice("v1", value);
                 break;
             case R.id.lam1_2: // v2
-                if (checkStatus(lam1And2.getCurrentTextColor())) {
-                    setValues.put("v2", 1);
-                } else {
-                    setValues.put("v2", 0);
-                }
-                serviceV.putValueDevice(setValues);
+                value = checkStatus(lam1And2.getCurrentTextColor());
+                serviceV.putValueDevice("v2", value);
                 break;
             case R.id.recamara: // v4
-                if (checkStatus(recamara.getCurrentTextColor())) {
-                    setValues.put("v4", 1);
-                } else {
-                    setValues.put("v4", 0);
-                }
-                serviceV.putValueDevice(setValues);
+                value = checkStatus(recamara.getCurrentTextColor());
+                serviceV.putValueDevice("v4", value);
                 break;
             case R.id.oficina: // v5
-                if (checkStatus(oficina.getCurrentTextColor())) {
-                    setValues.put("v5", 1);
-                } else {
-                    setValues.put("v5", 0);
-                }
-                serviceV.putValueDevice(setValues);
+                value = checkStatus(oficina.getCurrentTextColor());
+                serviceV.putValueDevice("v5", value);
                 break;
             case R.id.lucesAlb: // v6
-                if (checkStatus(lucesAlb.getCurrentTextColor())) {
-                    setValues.put("v6", 1);
-                } else {
-                    setValues.put("v6", 0);
-                }
-                serviceV.putValueDevice(setValues);
+               value = checkStatus(lucesAlb.getCurrentTextColor());
+                serviceV.putValueDevice("v6", value);
                 break;
             case R.id.puertaEnt: // v7
-                if (checkStatus(puertaEnt.getCurrentTextColor())) {
-                    setValues.put("v7", 1);
-                } else {
-                    setValues.put("v7", 0);
-                }
-                serviceV.putValueDevice(setValues);
+                value = checkStatus(puertaEnt.getCurrentTextColor());
+                serviceV.putValueDevice("v7", value);
                 break;
             case R.id.llenado: // v9
-                if (checkStatus(llenado.getCurrentTextColor())) {
-                    setValues.put("v9", 1);
-                } else {
-                    setValues.put("v9", 0);
-                }
-                serviceV.putValueDevice(setValues);
+                value = checkStatus(llenado.getCurrentTextColor());
+                serviceV.putValueDevice("v9", value);
                 break;
             case R.id.vaciado: // v10
-                if (checkStatus(vaciado.getCurrentTextColor())) {
-                    setValues.put("v10", 1);
-                } else {
-                    setValues.put("v10", 0);
-                }
-                serviceV.putValueDevice(setValues);
+                value = checkStatus(vaciado.getCurrentTextColor());
+                serviceV.putValueDevice("v10", value);
                 break;
             case R.id.refresh:
                 callEndpointAllDevices();
@@ -147,8 +116,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private Boolean checkStatus(int textButtonColor) {
-        return Color.WHITE == textButtonColor;
+    private String checkStatus(int textButtonColor) {
+        return Color.WHITE == textButtonColor ? "1" : "0";
     }
 
     public void setValuesOnOff(HashMap<String, Integer> valuesResponse) {

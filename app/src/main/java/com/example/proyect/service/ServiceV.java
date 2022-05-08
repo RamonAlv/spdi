@@ -43,18 +43,16 @@ public class ServiceV extends Services {
         });
     }
 
-    public void putValueDevice(HashMap<String, Integer> values) {
-        String url = "update?token=uEve8oCvmnu1pyoW1kFqVSFYZ8M9NLf6&v6=0";
-        Call<Void> setValue = callsV.putValueDevice(url);
+    public void putValueDevice(String name, String value) {
+        HashMap<String, Integer> mapValue = new HashMap<>();
+        mapValue.put(name, Integer.valueOf(value));
+        Call<Void> setValue = getCall(name, value);
         setValue.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                System.out.println(gson.toJson(response.headers()));
-                System.out.println(gson.toJson(response.code()));
-                System.out.println(gson.toJson(response.message()));
                 System.out.println(gson.toJson(response.isSuccessful()));
                 if (response.isSuccessful()) {
-                    mainActivity.setValuesOnOff(values);
+                    mainActivity.setValuesOnOff(mapValue);
                 }
             }
             @Override
@@ -63,5 +61,28 @@ public class ServiceV extends Services {
                 mapResponse = null;
             }
         });
+    }
+    
+    private Call<Void> getCall(String name, String value) {
+        switch (name) {
+            case "v1":
+                return callsV.putValueDeviceV1(value);
+            case "v2":
+                return callsV.putValueDeviceV2(value);
+            case "v4":
+                return callsV.putValueDeviceV4(value);
+            case "v5":
+                return callsV.putValueDeviceV5(value);
+            case "v6":
+                return callsV.putValueDeviceV6(value);
+            case "v7":
+                return callsV.putValueDeviceV7(value);
+            case "v9":
+                return callsV.putValueDeviceV9(value);
+            case "v10":
+                return callsV.putValueDeviceV10(value);
+            default:
+                return null;
+        }
     }
 }
